@@ -1,5 +1,0 @@
-require 'rspec/core/rake_task'
-
-RSpec::Core::RakeTask.new('spec') do | task |
-  task.pattern = "consumer/spec/bar_spec.rb"
-end

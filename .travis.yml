@@ -3,3 +3,4 @@ mono: none
 dotnet: 3.1.200
 script:
   - dotnet test Sample.Consumer.sln
+  - dotnet test Sample.Provider.sln

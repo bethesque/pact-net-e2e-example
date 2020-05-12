@@ -10,7 +10,7 @@ namespace Sample.Provider
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
+                endpoints.MapGet("/thing", async context =>
                 {
                     await context.Response.WriteAsync("Hello World!");
                 });

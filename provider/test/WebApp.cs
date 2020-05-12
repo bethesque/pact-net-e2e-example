@@ -1,12 +1,17 @@
 using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
 namespace Sample.Provider.Pacts
 {
-    internal static class WebApp
+    internal class WebApp : IAsyncDisposable
     {
-        public static IDisposable Start<TStartup>(string listenUri) where TStartup : class
+        private readonly IHost _host;
+
+        private WebApp(IHost host) => _host = host;
+
+        public static async Task<IAsyncDisposable> Start<TStartup>(string listenUri) where TStartup : class
         {
             var builder = Host.CreateDefaultBuilder()
                 .ConfigureWebHostDefaults(webBuilder =>
@@ -16,7 +21,20 @@ namespace Sample.Provider.Pacts
                         .UseStartup<TStartup>();
                 });
 
-            return builder.Build();
+            var app = new WebApp(builder.Build());
+            await app.StartAsync();
+
+            return app;
+        }
+
+        private async Task StartAsync()
+        {
+            await _host.StartAsync();
+        }
+
+        public async ValueTask DisposeAsync()
+        {
+            await _host.StopAsync();
         }
     }
 }

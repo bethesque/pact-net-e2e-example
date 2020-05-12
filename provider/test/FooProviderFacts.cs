@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using PactNet;
 using PactNet.Infrastructure.Outputters;
 using Sample.Provider.Pacts.Support;
@@ -23,7 +24,7 @@ namespace Sample.Provider.Pacts
         }
 
         [Fact]
-        public void HonoursPactWithConsumer()
+        public async Task HonoursPactWithConsumer()
         {
             // Arrange
             const string serviceUri = "http://localhost:9222";
@@ -35,7 +36,7 @@ namespace Sample.Provider.Pacts
                 }
             };
 
-            using (WebApp.Start<TestStartup>(serviceUri))
+            await using (await WebApp.Start<TestStartup>(serviceUri))
             {
                 var pactVerifier = new PactVerifier(config);
 

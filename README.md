@@ -1,18 +1,18 @@
-# Pact Ruby End to End Example
+# Pact-net End to End Example
 
-[![Build Status](https://travis-ci.org/pact-foundation/pact-ruby-e2e-example.svg?branch=master)](https://travis-ci.org/pact-foundation/pact-ruby-e2e-example)
+[![Build Status](https://travis-ci.org/pact-foundation/pact-dotnet-e2e-example.svg?branch=master)](https://travis-ci.org/pact-foundation/pact-dotnet-e2e-example)
 
-Code base to use for demonstrating features or recreating issues in the ruby implementation of pact. Please fork it and modify to demonstrate or recreate your own code.
+Code base to use for demonstrating features or recreating issues in the .NET implementation of pact. Please fork it and modify to demonstrate or recreate your own code.
 
-This code base is _not_ intended as an example of a best practice pact implementation. Its purpose is to create a running example with the simplest code possible. If you want to see an example of how you would use pact in a Ruby consumer or provider project, see the [example] dir in the pact repository.
+This code base is _not_ intended as an example of a best practice pact implementation. Its purpose is to create a running example with the simplest code possible. If you want to see an example of how you would use pact in a .NET consumer or provider project, see the [example] dir in the pact repository.
 
 ## Usage
 
 ### Fork and clone the codebase
 
     # Fork the repository using the 'Fork' button on the repository home page, then:
-    git clone git@github.com:YOUR_USERNAME/pact-ruby-e2e-example.git
-    cd pact-ruby-e2e-example
+    git clone git@github.com:YOUR_USERNAME/pact-dotnet-e2e-example.git
+    cd pact-dotnet-e2e-example
 
 ### Set the gem versions you are using
 

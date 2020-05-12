@@ -44,7 +44,7 @@ namespace Sample.Provider.Pacts
                     .ProviderState($@"{serviceUri}/provider-states")
                     .ServiceProvider("Bar", serviceUri)
                     .HonoursPactWith("Foo")
-                    .PactBroker(_brokerBaseUri)
+                    .PactUri("foo-bar.json")
                     .Verify();
             }
         }

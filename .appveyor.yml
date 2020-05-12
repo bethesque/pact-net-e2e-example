@@ -1,7 +1,3 @@
-# fix lineendings in Windows
-init:
-  - git config --global core.autocrlf input
-
 build: off
 
 cache:

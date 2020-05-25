@@ -36,12 +36,11 @@ namespace Sample.Provider.Pacts
                 }
             };
 
-            await using (await WebApp.Start<TestStartup>(serviceUri))
+            await using (await WebApp.Start<BarApp>(serviceUri))
             {
                 var pactVerifier = new PactVerifier(config);
 
                 pactVerifier
-                    .ProviderState($@"{serviceUri}/provider-states")
                     .ServiceProvider("Bar", serviceUri)
                     .HonoursPactWith("Foo")
                     .PactUri("foo-bar.json")

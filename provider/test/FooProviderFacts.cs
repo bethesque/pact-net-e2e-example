@@ -30,6 +30,13 @@ namespace Sample.Provider.Pacts
             const string serviceUri = "http://localhost:9222";
             var config = new PactVerifierConfig
             {
+                ProviderVersion = "1.2.3",
+                PublishVerificationResults =
+                    bool.TryParse(
+                        Environment.GetEnvironmentVariable("PUBLISH_VERIFICATIONS_RESULTS"),
+                        out bool publishVerificationResults) &&
+                    publishVerificationResults,
+
                 Outputters = new List<IOutput>
                 {
                     new XUnitOutput(_output)

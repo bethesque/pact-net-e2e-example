@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using PactNet;
 using PactNet.Matchers;
 using PactNet.Mocks.MockHttpService.Models;
 using Xunit;
@@ -59,6 +60,14 @@ namespace Sample.Consumer.Pacts
             // for the purposes of this test.
             Assert.Equal(HttpStatusCode.OK, barResponse.StatusCode);
             _pact.MockProviderService.VerifyInteractions();
+
+            // Publish pact to broker
+            var pactPublisher = new PactPublisher(
+                "http://test.pact.dius.com.au",
+                new PactUriOptions("dXfltyFMgNOFZAxr8io9wJ37iUpY42M", "O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1"));
+            pactPublisher.PublishToBroker(
+                @"../../../spec/pacts/foo-bar.json",
+                "1.0.0", new [] { "master" });
         }
     }
 }

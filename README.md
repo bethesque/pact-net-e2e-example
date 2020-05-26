@@ -1,6 +1,6 @@
 # Pact-net End to End Example
 
-[![Build Status](https://travis-ci.org/pact-foundation/pact-dotnet-e2e-example.svg?branch=master)](https://travis-ci.org/pact-foundation/pact-dotnet-e2e-example)
+[![Build Status](https://travis-ci.org/alastairs/pact-net-e2e-example.svg?branch=master)](https://travis-ci.org/alastairs/pact-dotnet-e2e-example)
 
 Code base to use for demonstrating features or recreating issues in the .NET implementation of pact. Please fork it and modify to demonstrate or recreate your own code.
 

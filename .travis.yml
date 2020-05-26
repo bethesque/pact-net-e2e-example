@@ -1,10 +1,6 @@
 language: csharp
 mono: none
 dotnet: 3.1.200
-env:
-  - PACT_BROKER_BASE_URI=https://test.pact.dius.com.au
-  - PACT_BROKER_USERNAME=dXfltyFMgNOFZAxr8io9wJ37iUpY42M
-  - PACT_BROKER_PASSWORD=O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1
 script:
   - dotnet test --configuration Release Sample.Consumer.sln
   - dotnet test --configuration Release Sample.Provider.sln

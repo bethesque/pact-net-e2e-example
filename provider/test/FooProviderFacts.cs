@@ -11,15 +11,11 @@ namespace Sample.Provider.Pacts
 {
     public class FooProviderFacts
     {
-        private readonly string _brokerBaseUri;
         private readonly ITestOutputHelper _output;
 
         public FooProviderFacts(ITestOutputHelper output)
         {
             _output = output;
-
-            _brokerBaseUri = Environment.GetEnvironmentVariable("PACT_BROKER_BASE_URI") ??
-                "https://test.pact.dius.com.au";
         }
 
         [Fact]
@@ -47,7 +43,9 @@ namespace Sample.Provider.Pacts
                 pactVerifier
                     .ServiceProvider("Bar", serviceUri)
                     .HonoursPactWith("Foo")
-                    .PactUri($"{_brokerBaseUri}/pacts/provider/Bar/consumer/Foo/latest")
+                    .PactUri(
+                        "https://test.pact.dius.com.au/pacts/provider/Bar/consumer/Foo/latest",
+                        new PactUriOptions("dXfltyFMgNOFZAxr8io9wJ37iUpY42M", "O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1"))
                     .Verify();
             }
         }

@@ -18,9 +18,8 @@ namespace Sample.Provider.Pacts
         {
             _output = output;
 
-            _brokerBaseUri = EnvironmentVariableToBool("CI") ?
-                "https://test.pact.dius.com.au" :
-                "http://localhost:9292";
+            _brokerBaseUri = Environment.GetEnvironmentVariable("PACT_BROKER_BASE_URI") ??
+                "https://test.pact.dius.com.au";
         }
 
         [Fact]
@@ -31,7 +30,7 @@ namespace Sample.Provider.Pacts
             var config = new PactVerifierConfig
             {
                 ProviderVersion = "1.2.3",
-                PublishVerificationResults = EnvironmentVariableToBool("PUBLISH_VERIFICATION_RESULTS"),
+                PublishVerificationResults = true,
 
                 Outputters = new List<IOutput>
                 {
@@ -48,44 +47,9 @@ namespace Sample.Provider.Pacts
                 pactVerifier
                     .ServiceProvider("Bar", serviceUri)
                     .HonoursPactWith("Foo")
-                    .PactUri("foo-bar.json")
+                    .PactUri($"{_brokerBaseUri}/pacts/provider/Bar/consumer/Foo/latest")
                     .Verify();
             }
-        }
-
-        private bool EnvironmentVariableToBool(string environmentVariableName, bool defaultValue = default)
-        {
-            var value = Environment.GetEnvironmentVariable(environmentVariableName);
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                _output.WriteLine($"Environment variable {environmentVariableName} is undefined.");
-                return defaultValue;
-            }
-
-            if (bool.TryParse(value, out bool boolValue))
-            {
-                _output.WriteLine($"Environment variable {environmentVariableName} is a boolean with value '{boolValue}'.");
-                return boolValue;
-            }
-
-            string valueLowercase = value.ToLowerInvariant();
-            if (valueLowercase == "y" || valueLowercase == "n")
-            {
-                _output.WriteLine($"Environment variable {environmentVariableName} is a string with value '{valueLowercase}'.");
-                return valueLowercase == "y";
-            }
-
-            if (int.TryParse(value, out int intValue))
-            {
-                if (intValue == 0 || intValue == 1)
-                {
-                    _output.WriteLine($"Environment variable {environmentVariableName} is an int with value '{intValue}'.");
-                    return intValue == 1;
-                }
-            }
-
-            _output.WriteLine($"Environment variable {environmentVariableName} is defined with unparseable value '{intValue}'.");
-            return defaultValue;
         }
     }
 }

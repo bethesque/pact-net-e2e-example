@@ -63,7 +63,7 @@ namespace Sample.Consumer.Pacts
 
             // Publish pact to broker
             var pactPublisher = new PactPublisher(
-                "http://test.pact.dius.com.au",
+                "https://test.pact.dius.com.au",
                 new PactUriOptions("dXfltyFMgNOFZAxr8io9wJ37iUpY42M", "O5AIZWxelWbLvqMd8PkAVycBJh2Psyg1"));
             pactPublisher.PublishToBroker(
                 @"../../../spec/pacts/foo-bar.json",
